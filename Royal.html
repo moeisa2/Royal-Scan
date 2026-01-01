@@ -1,0 +1,1769 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Scan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3498db;
+            --primary-dark: #2980b9;
+            --secondary: #2ecc71;
+            --secondary-dark: #27ae60;
+            --warning: #f39c12;
+            --warning-dark: #e67e22;
+            --danger: #e74c3c;
+            --danger-dark: #c0392b;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--dark);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header h1 {
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .header p {
+            font-weight: 300;
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+        .header i {
+            position: absolute;
+            left: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 28px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: var(--light);
+            border-bottom: 2px solid #e0e0e0;
+            padding: 0 20px;
+        }
+
+        .nav-tab {
+            flex: 1;
+            padding: 18px 25px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .nav-tab:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        .nav-tab.active {
+            background-color: white;
+            border-bottom: 3px solid var(--primary);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 0;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* نمط صفحة الإدخال */
+        .form-container {
+            padding: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--dark);
+            font-size: 16px;
+        }
+
+        .input-group input, .input-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: var(--transition);
+            background-color: var(--light);
+        }
+
+        .input-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .input-group input:focus, .input-group textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 20px;
+            top: 45px;
+            color: var(--gray);
+        }
+
+        .input-group textarea + i {
+            top: 40px;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 16px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(to right, var(--secondary), var(--secondary-dark));
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(52, 152, 219, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(52, 152, 219, 0); }
+        }
+
+        /* نمط صفحة العرض */
+        .search-container {
+            padding: 25px;
+            background-color: var(--light);
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .search-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .search-type {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .search-option {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 10px 18px;
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid #e0e0e0;
+        }
+
+        .search-option:hover {
+            border-color: var(--primary);
+        }
+
+        .search-option.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .search-option input {
+            display: none;
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 14px 50px 14px 18px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: var(--transition);
+            background-color: white;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+
+        .search-hint {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 15px;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            padding: 0 25px 25px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        thead {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        th {
+            padding: 18px;
+            text-align: right;
+            font-weight: 500;
+            position: relative;
+        }
+
+        th:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 60%;
+            width: 1px;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        th:first-child:after {
+            display: none;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #e0e0e0;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        tbody tr:hover {
+            background-color: rgba(52, 152, 219, 0.08);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        tbody tr.selected {
+            background-color: rgba(52, 152, 219, 0.15);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+            border-left: 4px solid var(--primary);
+        }
+
+        td {
+            padding: 16px;
+            text-align: right;
+            transition: var(--transition);
+        }
+
+        .notes-cell {
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .notes-cell.expanded {
+            white-space: normal;
+            max-width: none;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 50px;
+            color: var(--gray);
+        }
+
+        .empty-state i {
+            font-size: 56px;
+            margin-bottom: 20px;
+            color: #e0e0e0;
+        }
+
+        .counter {
+            background-color: var(--primary);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 15px;
+            margin-right: 10px;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        /* عرض البيانات المكبرة */
+        .doctor-details-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            padding: 20px;
+        }
+
+        .doctor-details-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .doctor-details-modal {
+            background: white;
+            width: 90%;
+            max-width: 700px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            transform: scale(0.9);
+            transition: var(--transition);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .doctor-details-overlay.active .doctor-details-modal {
+            transform: scale(1);
+        }
+
+        .doctor-details-header {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 25px 30px;
+            position: relative;
+        }
+
+        .doctor-details-header h2 {
+            font-weight: 700;
+            margin-bottom: 5px;
+            font-size: 26px;
+        }
+
+        .doctor-details-header p {
+            font-weight: 300;
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+        .close-details {
+            position: absolute;
+            left: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 18px;
+        }
+
+        .close-details:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .doctor-details-content {
+            padding: 30px;
+        }
+
+        .doctor-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .info-item {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 10px;
+            border-right: 4px solid var(--primary);
+            transition: var(--transition);
+        }
+
+        .info-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .info-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .info-label i {
+            font-size: 18px;
+        }
+
+        .info-value {
+            font-size: 18px;
+            color: var(--dark);
+            font-weight: 500;
+            line-height: 1.6;
+            padding-right: 5px;
+        }
+
+        .notes-section {
+            background: #fff9e6;
+            padding: 25px;
+            border-radius: 10px;
+            border-right: 4px solid var(--warning);
+        }
+
+        .notes-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            color: var(--warning-dark);
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .notes-label i {
+            font-size: 20px;
+        }
+
+        .notes-content {
+            font-size: 16px;
+            color: var(--dark);
+            line-height: 1.7;
+            white-space: pre-line;
+        }
+
+        .doctor-details-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .details-btn {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .details-btn-edit {
+            background: linear-gradient(to right, var(--warning), var(--warning-dark));
+            color: white;
+        }
+
+        .details-btn-delete {
+            background: linear-gradient(to right, var(--danger), var(--danger-dark));
+            color: white;
+        }
+
+        .details-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* نافذة التأكيد للحذف */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            transform: scale(0.8);
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1);
+        }
+
+        .modal-icon {
+            font-size: 56px;
+            color: var(--danger);
+            margin-bottom: 20px;
+        }
+
+        .modal h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+            font-size: 22px;
+        }
+
+        .modal p {
+            margin-bottom: 25px;
+            color: var(--gray);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .modal-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .modal-btn-cancel {
+            background: var(--light);
+            color: var(--dark);
+        }
+
+        .modal-btn-cancel:hover {
+            background: #e9ecef;
+        }
+
+        .modal-btn-confirm {
+            background: linear-gradient(to right, var(--danger), var(--danger-dark));
+            color: white;
+        }
+
+        .modal-btn-confirm:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+        }
+
+        /* نافذة التعديل */
+        .edit-modal {
+            max-width: 600px;
+            text-align: right;
+        }
+
+        .edit-form {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+            font-size: 16px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: var(--transition);
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+
+        .edit-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .btn-edit-save {
+            background: linear-gradient(to right, var(--secondary), var(--secondary-dark));
+            color: white;
+        }
+
+        .btn-edit-save:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(46, 204, 113, 0.3);
+        }
+
+        /* تأثير الحذف */
+        .deleting {
+            animation: deleteAnimation 0.5s ease forwards;
+        }
+
+        @keyframes deleteAnimation {
+            to {
+                opacity: 0;
+                transform: translateX(100px);
+                height: 0;
+                padding: 0;
+                margin: 0;
+                border: none;
+            }
+        }
+
+        /* إشعارات */
+        .notification {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            padding: 18px 25px;
+            border-radius: 10px;
+            color: white;
+            font-weight: 500;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            opacity: 0;
+            transform: translateX(100px);
+            transition: var(--transition);
+            max-width: 400px;
+            font-size: 15px;
+        }
+
+        .notification.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            background-color: var(--secondary);
+        }
+
+        .notification.error {
+            background-color: var(--danger);
+        }
+
+        .notification.info {
+            background-color: var(--primary);
+        }
+
+        @media (max-width: 992px) {
+            .container {
+                border-radius: 12px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header i {
+                position: static;
+                display: block;
+                margin-bottom: 15px;
+            }
+            
+            .nav-tab {
+                padding: 15px;
+                font-size: 15px;
+            }
+            
+            .form-container {
+                padding: 20px;
+            }
+            
+            .table-container {
+                padding: 0 15px 15px;
+            }
+            
+            th, td {
+                padding: 12px 10px;
+                font-size: 14px;
+            }
+            
+            .doctor-info-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .doctor-details-modal {
+                width: 95%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .nav-tab {
+                padding: 15px;
+            }
+            
+            .search-controls {
+                flex-direction: column;
+            }
+            
+            .search-type {
+                justify-content: center;
+            }
+            
+            .form-buttons {
+                flex-direction: column;
+            }
+            
+            .doctor-details-actions {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                border-radius: 10px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .header p {
+                font-size: 14px;
+            }
+            
+            th, td {
+                padding: 10px 8px;
+                font-size: 13px;
+            }
+            
+            .search-option {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+            
+            .modal {
+                padding: 20px;
+            }
+            
+            .doctor-details-header {
+                padding: 20px;
+            }
+            
+            .doctor-details-content {
+                padding: 20px;
+            }
+        }
+
+        .fade-in {
+            animation: fadeInRow 0.5s ease;
+        }
+
+        @keyframes fadeInRow {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <i class="fas fa-user-md"></i>
+            <h1>Royal Scan </h1>
+            <p>إدارة كاملة لبيانات الدكاتره</p>
+        </div>
+        
+        <div class="nav-tabs">
+            <div class="nav-tab active" data-tab="add">
+                <i class="fas fa-plus-circle"></i>
+                إضافة دكتور جديد
+            </div>
+            <div class="nav-tab" data-tab="view">
+                <i class="fas fa-list-alt"></i>
+                عرض بيانات الدكاتره
+                <span class="counter" id="doctorsCount">0</span>
+            </div>
+        </div>
+        
+        <!-- صفحة إضافة البيانات -->
+        <div id="addTab" class="tab-content active">
+            <div class="form-container">
+                <div class="input-group">
+                    <label for="village"><i class="fas fa-home"></i> القرية</label>
+                    <input type="text" id="village" placeholder="أدخل اسم القرية">
+                </div>
+                
+                <div class="input-group">
+                    <label for="doctorName"><i class="fas fa-user"></i> اسم الدكتور</label>
+                    <input type="text" id="doctorName" placeholder="أدخل اسم الدكتور">
+                </div>
+                
+                <div class="input-group">
+                    <label for="personalNumber"><i class="fas fa-id-card"></i> الرقم الشخصي</label>
+                    <input type="text" id="personalNumber" placeholder="أدخل الرقم الشخصي">
+                </div>
+                
+                <div class="input-group">
+                    <label for="clinicNumber"><i class="fas fa-phone"></i> رقم العيادة</label>
+                    <input type="text" id="clinicNumber" placeholder="أدخل رقم العيادة">
+                </div>
+                
+                <div class="input-group">
+                    <label for="address"><i class="fas fa-map-marker-alt"></i> العنوان</label>
+                    <input type="text" id="address" placeholder="أدخل العنوان">
+                </div>
+                
+                <div class="input-group">
+                    <label for="appointments"><i class="fas fa-calendar-alt"></i> المواعيد</label>
+                    <input type="text" id="appointments" placeholder="أدخل المواعيد">
+                </div>
+                
+                <div class="input-group">
+                    <label for="notes"><i class="fas fa-sticky-note"></i> ملاحظات</label>
+                    <textarea id="notes" placeholder="أدخل أي ملاحظات إضافية"></textarea>
+                </div>
+                
+                <div class="form-buttons">
+                    <button id="saveBtn" class="btn btn-primary pulse">
+                        <i class="fas fa-save"></i> حفظ البيانات
+                    </button>
+                    <button type="button" id="clearBtn" class="btn btn-secondary">
+                        <i class="fas fa-broom"></i> مسح النموذج
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- صفحة عرض البيانات -->
+        <div id="viewTab" class="tab-content">
+            <div class="search-container">
+                <div class="search-controls">
+                    <div class="search-type">
+                        <label class="search-option active" data-type="doctorName">
+                            <input type="radio" name="searchType" value="doctorName" checked>
+                            <i class="fas fa-user"></i>
+                            اسم الدكتور
+                        </label>
+                        <label class="search-option" data-type="village">
+                            <input type="radio" name="searchType" value="village">
+                            <i class="fas fa-home"></i>
+                            القرية
+                        </label>
+                        <label class="search-option" data-type="personalNumber">
+                            <input type="radio" name="searchType" value="personalNumber">
+                            <i class="fas fa-phone"></i>
+                            رقم الهاتف الشخصي
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="اكثر كلمة البحث...">
+                    <i class="fas fa-search"></i>
+                </div>
+                
+                <div class="search-hint">
+                    <i class="fas fa-info-circle"></i>
+                    <span id="searchHint">البحث باسم الدكتور</span>
+                </div>
+            </div>
+            
+            <div class="table-container">
+                <table id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>القرية</th>
+                            <th>اسم الدكتور</th>
+                            <th>الرقم الشخصي</th>
+                            <th>رقم العيادة</th>
+                            <th>العنوان</th>
+                            <th>المواعيد</th>
+                            <th>ملاحظات</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                
+                <div id="emptyState" class="empty-state" style="display: none;">
+                    <i class="fas fa-user-md"></i>
+                    <h3>لا توجد بيانات</h3>
+                    <p>لم يتم إضافة أي دكاتره بعد</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- عرض البيانات المكبرة -->
+    <div class="doctor-details-overlay" id="doctorDetailsModal">
+        <div class="doctor-details-modal">
+            <div class="doctor-details-header">
+                <button class="close-details" id="closeDetailsModal">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h2 id="doctorDetailsName">اسم الدكتور</h2>
+                <p id="doctorDetailsVillage">القرية</p>
+            </div>
+            
+            <div class="doctor-details-content">
+                <div class="doctor-info-grid">
+                    <div class="info-item">
+                        <div class="info-label">
+                            <i class="fas fa-id-card"></i>
+                            الرقم الشخصي
+                        </div>
+                        <div class="info-value" id="doctorDetailsPersonalNumber"></div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-label">
+                            <i class="fas fa-phone"></i>
+                            رقم العيادة
+                        </div>
+                        <div class="info-value" id="doctorDetailsClinicNumber"></div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-label">
+                            <i class="fas fa-map-marker-alt"></i>
+                            العنوان
+                        </div>
+                        <div class="info-value" id="doctorDetailsAddress"></div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-label">
+                            <i class="fas fa-calendar-alt"></i>
+                            المواعيد
+                        </div>
+                        <div class="info-value" id="doctorDetailsAppointments"></div>
+                    </div>
+                </div>
+                
+                <div class="notes-section">
+                    <div class="notes-label">
+                        <i class="fas fa-sticky-note"></i>
+                        الملاحظات
+                    </div>
+                    <div class="notes-content" id="doctorDetailsNotes">
+                        لا توجد ملاحظات
+                    </div>
+                </div>
+                
+                <div class="doctor-details-actions">
+                    <button class="details-btn details-btn-edit" id="editFromDetails">
+                        <i class="fas fa-edit"></i> تعديل البيانات
+                    </button>
+                    <button class="details-btn details-btn-delete" id="deleteFromDetails">
+                        <i class="fas fa-trash"></i> حذف الدكتور
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة تأكيد الحذف -->
+    <div class="modal-overlay" id="deleteModal">
+        <div class="modal">
+            <div class="modal-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h3>تأكيد الحذف</h3>
+            <p id="deleteMessage">هل أنت متأكد من أنك تريد حذف بيانات الدكتور؟</p>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-cancel" id="cancelDelete">
+                    <i class="fas fa-times"></i> إلغاء
+                </button>
+                <button class="modal-btn modal-btn-confirm" id="confirmDelete">
+                    <i class="fas fa-trash"></i> نعم، احذف
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة التعديل -->
+    <div class="modal-overlay" id="editModal">
+        <div class="modal edit-modal">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                <h3 style="margin: 0; font-size: 24px;">تعديل بيانات الدكتور</h3>
+                <button id="closeEditModal" style="background: none; border: none; font-size: 22px; cursor: pointer; color: var(--gray);">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <form id="editForm" class="edit-form">
+                <input type="hidden" id="editDoctorId">
+                
+                <div class="form-group">
+                    <label for="editVillage"><i class="fas fa-home"></i> القرية</label>
+                    <input type="text" id="editVillage" placeholder="أدخل اسم القرية" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editDoctorName"><i class="fas fa-user"></i> اسم الدكتور</label>
+                    <input type="text" id="editDoctorName" placeholder="أدخل اسم الدكتور" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editPersonalNumber"><i class="fas fa-id-card"></i> الرقم الشخصي</label>
+                    <input type="text" id="editPersonalNumber" placeholder="أدخل الرقم الشخصي" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editClinicNumber"><i class="fas fa-phone"></i> رقم العيادة</label>
+                    <input type="text" id="editClinicNumber" placeholder="أدخل رقم العيادة" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editAddress"><i class="fas fa-map-marker-alt"></i> العنوان</label>
+                    <input type="text" id="editAddress" placeholder="أدخل العنوان" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editAppointments"><i class="fas fa-calendar-alt"></i> المواعيد</label>
+                    <input type="text" id="editAppointments" placeholder="أدخل المواعيد" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editNotes"><i class="fas fa-sticky-note"></i> ملاحظات</label>
+                    <textarea id="editNotes" placeholder="أدخل أي ملاحظات إضافية"></textarea>
+                </div>
+                
+                <div class="edit-buttons">
+                    <button type="button" class="modal-btn modal-btn-cancel" id="cancelEdit">
+                        <i class="fas fa-times"></i> إلغاء
+                    </button>
+                    <button type="submit" class="modal-btn btn-edit-save" id="saveEdit">
+                        <i class="fas fa-save"></i> حفظ التغييرات
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- إشعارات -->
+    <div id="notification" class="notification"></div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+        import { getDatabase, ref, onValue, push, set, remove, update } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+
+        // إعداد Firebase الجديد من السيرفر الذي أرسلته
+        const firebaseConfig = {
+            apiKey: "AIzaSyAVZU1riVcDh61gqzF1JKyBnri_17IFZ9w",
+            authDomain: "royal-a3eb2.firebaseapp.com",
+            databaseURL: "https://royal-a3eb2-default-rtdb.firebaseio.com",
+            projectId: "royal-a3eb2",
+            storageBucket: "royal-a3eb2.firebasestorage.app",
+            messagingSenderId: "529111029922",
+            appId: "1:529111029922:web:9beb6c174de1450c401ffb",
+            measurementId: "G-TSL9B2MFHH"
+        };
+
+        // تهيئة Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        // متغيرات عامة
+        let dataArray = [];
+        let currentSearchType = 'doctorName';
+        let doctorToDelete = null;
+        let doctorToEdit = null;
+        let selectedDoctor = null;
+        const tableBody = document.querySelector('#dataTable tbody');
+        const emptyState = document.getElementById('emptyState');
+        const searchHint = document.getElementById('searchHint');
+        const deleteModal = document.getElementById('deleteModal');
+        const deleteMessage = document.getElementById('deleteMessage');
+        const cancelDelete = document.getElementById('cancelDelete');
+        const confirmDelete = document.getElementById('confirmDelete');
+        const editModal = document.getElementById('editModal');
+        const editForm = document.getElementById('editForm');
+        const closeEditModal = document.getElementById('closeEditModal');
+        const cancelEdit = document.getElementById('cancelEdit');
+        const doctorsCount = document.getElementById('doctorsCount');
+        const doctorDetailsModal = document.getElementById('doctorDetailsModal');
+        const closeDetailsModal = document.getElementById('closeDetailsModal');
+        const editFromDetails = document.getElementById('editFromDetails');
+        const deleteFromDetails = document.getElementById('deleteFromDetails');
+
+        // تأثيرات صوتية
+        const successSound = new Audio("data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA");
+        const errorSound = new Audio("data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA");
+        const searchSound = new Audio("data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA");
+        const deleteSound = new Audio("data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXrahAgAAAAEA");
+        const editSound = new Audio("data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXrahAgAAAAEA");
+        const detailsSound = new Audio("data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXrhAgAAAAEA");
+
+        // وظيفة تبديل التبويبات
+        function switchTab(tabId) {
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            document.querySelector(`.nav-tab[data-tab="${tabId}"]`).classList.add('active');
+            document.getElementById(`${tabId}Tab`).classList.add('active');
+            
+            if (tabId === 'view') {
+                doctorsCount.textContent = dataArray.length;
+            }
+        }
+
+        // إضافة أحداث التبديل للتبويبات
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabId = this.dataset.tab;
+                switchTab(tabId);
+            });
+        });
+
+        // وظيفة عرض الإشعارات
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = 'notification ' + type + ' show';
+            
+            if (type === 'success') {
+                successSound.play().catch(e => console.log("لا يمكن تشغيل الصوت: ", e));
+            } else {
+                errorSound.play().catch(e => console.log("لا يمكن تشغيل الصوت: ", e));
+            }
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // تحديث تلميح البحث
+        function updateSearchHint() {
+            const hints = {
+                'doctorName': 'البحث باسم الدكتور',
+                'village': 'البحث باسم القرية', 
+                'personalNumber': 'البحث برقم الهاتف الشخصي'
+            };
+            searchHint.textContent = hints[currentSearchType];
+        }
+
+        // تغيير نوع البحث
+        document.querySelectorAll('.search-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.search-option').forEach(opt => {
+                    opt.classList.remove('active');
+                });
+                
+                this.classList.add('active');
+                currentSearchType = this.dataset.type;
+                updateSearchHint();
+                
+                const placeholders = {
+                    'doctorName': 'اكتب اسم الدكتور...',
+                    'village': 'اكتب اسم القرية...',
+                    'personalNumber': 'اكتب رقم الهاتف...'
+                };
+                document.getElementById('searchInput').placeholder = placeholders[currentSearchType];
+                
+                if (document.getElementById('searchInput').value.trim()) {
+                    searchData();
+                }
+            });
+        });
+
+        // قراءة البيانات مباشرة من Firebase
+        onValue(ref(db, 'doctors'), snapshot => {
+            dataArray = [];
+            if (snapshot.exists()) {
+                snapshot.forEach(child => {
+                    dataArray.push({...child.val(), id: child.key});
+                });
+                renderTable(dataArray);
+                emptyState.style.display = 'none';
+                document.querySelector('.table-container').style.display = 'block';
+                
+                doctorsCount.textContent = dataArray.length;
+            } else {
+                emptyState.style.display = 'block';
+                document.querySelector('.table-container').style.display = 'none';
+                doctorsCount.textContent = '0';
+            }
+        });
+
+        // وظيفة لتظليل النص المطابق في النتائج
+        function highlightText(text, searchTerm) {
+            if (!searchTerm) return text;
+            
+            const regex = new RegExp(`(${searchTerm})`, 'gi');
+            return text.replace(regex, '<span class="highlight">$1</span>');
+        }
+
+        // عرض البيانات في الجدول
+        function renderTable(arr) {
+            tableBody.innerHTML = '';
+            
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            
+            arr.forEach((item, index) => {
+                const row = document.createElement('tr');
+                row.className = 'fade-in';
+                row.style.animationDelay = `${index * 0.05}s`;
+                row.dataset.id = item.id;
+                
+                // إضافة فئة selected إذا كان هذا هو الطبيب المحدد
+                if (selectedDoctor && selectedDoctor.id === item.id) {
+                    row.classList.add('selected');
+                }
+                
+                const village = searchTerm && currentSearchType === 'village' ? 
+                    highlightText(item.village || '', searchTerm) : (item.village || '');
+                
+                const doctorName = searchTerm && currentSearchType === 'doctorName' ? 
+                    highlightText(item.doctorName || '', searchTerm) : (item.doctorName || '');
+                
+                const personalNumber = searchTerm && currentSearchType === 'personalNumber' ? 
+                    highlightText(item.personalNumber || '', searchTerm) : (item.personalNumber || '');
+                
+                row.innerHTML = `<td>${village}</td>
+                                 <td>${doctorName}</td>
+                                 <td>${personalNumber}</td>
+                                 <td>${item.clinicNumber || ''}</td>
+                                 <td>${item.address || ''}</td>
+                                 <td>${item.appointments || ''}</td>
+                                 <td class="notes-cell" title="${item.notes || ''}">${item.notes || 'لا توجد ملاحظات'}</td>`;
+                tableBody.appendChild(row);
+                
+                // حدث النقر على الصف لعرض التفاصيل
+                row.addEventListener('click', function(e) {
+                    // إزالة التحديد من جميع الصفوف
+                    document.querySelectorAll('tbody tr').forEach(r => {
+                        r.classList.remove('selected');
+                    });
+                    
+                    // تحديد الصف الحالي
+                    this.classList.add('selected');
+                    
+                    // حفظ الطبيب المحدد
+                    selectedDoctor = arr.find(item => item.id === this.dataset.id);
+                    
+                    // عرض التفاصيل المكبرة
+                    showDoctorDetails(selectedDoctor);
+                });
+
+                // إضافة إمكانية النقر على الملاحظات لعرضها كاملة
+                const notesCell = row.querySelector('.notes-cell');
+                if (notesCell.textContent.length > 30 && notesCell.textContent !== 'لا توجد ملاحظات') {
+                    notesCell.style.cursor = 'pointer';
+                    notesCell.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        this.classList.toggle('expanded');
+                    });
+                }
+            });
+        }
+
+        // عرض تفاصيل الطبيب المكبرة
+        function showDoctorDetails(doctor) {
+            if (!doctor) return;
+            
+            // تشغيل صوت العرض
+            detailsSound.play().catch(e => console.log("لا يمكن تشغيل الصوت: ", e));
+            
+            // تحديث البيانات في النافذة المكبرة
+            document.getElementById('doctorDetailsName').textContent = doctor.doctorName || 'غير محدد';
+            document.getElementById('doctorDetailsVillage').textContent = `القرية: ${doctor.village || 'غير محدد'}`;
+            document.getElementById('doctorDetailsPersonalNumber').textContent = doctor.personalNumber || 'غير محدد';
+            document.getElementById('doctorDetailsClinicNumber').textContent = doctor.clinicNumber || 'غير محدد';
+            document.getElementById('doctorDetailsAddress').textContent = doctor.address || 'غير محدد';
+            document.getElementById('doctorDetailsAppointments').textContent = doctor.appointments || 'غير محدد';
+            document.getElementById('doctorDetailsNotes').textContent = doctor.notes || 'لا توجد ملاحظات';
+            
+            // تعيين معرف الطبيب للأزرار في النافذة المكبرة
+            editFromDetails.dataset.id = doctor.id;
+            deleteFromDetails.dataset.id = doctor.id;
+            deleteFromDetails.dataset.name = doctor.doctorName;
+            
+            // إظهار النافذة المكبرة
+            doctorDetailsModal.classList.add('active');
+        }
+
+        // إغلاق نافذة التفاصيل المكبرة
+        closeDetailsModal.addEventListener('click', () => {
+            doctorDetailsModal.classList.remove('active');
+        });
+
+        // النقر خارج النافذة لإغلاقها
+        doctorDetailsModal.addEventListener('click', (e) => {
+            if (e.target === doctorDetailsModal) {
+                doctorDetailsModal.classList.remove('active');
+            }
+        });
+
+        // زر التعديل من النافذة المكبرة
+        editFromDetails.addEventListener('click', () => {
+            const doctorId = editFromDetails.dataset.id;
+            const doctorData = dataArray.find(item => item.id === doctorId);
+            if (doctorData) {
+                doctorDetailsModal.classList.remove('active');
+                showEditForm(doctorData);
+            }
+        });
+
+        // زر الحذف من النافذة المكبرة
+        deleteFromDetails.addEventListener('click', () => {
+            const doctorId = deleteFromDetails.dataset.id;
+            const doctorName = deleteFromDetails.dataset.name;
+            const rowElement = document.querySelector(`tr[data-id="${doctorId}"]`);
+            
+            if (rowElement) {
+                doctorDetailsModal.classList.remove('active');
+                showDeleteConfirmation(doctorId, doctorName, rowElement);
+            }
+        });
+
+        // حفظ البيانات الجديدة
+        document.getElementById('saveBtn').addEventListener('click', () => {
+            const village = document.getElementById('village').value.trim();
+            const doctorName = document.getElementById('doctorName').value.trim();
+            const personalNumber = document.getElementById('personalNumber').value.trim();
+            const clinicNumber = document.getElementById('clinicNumber').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const appointments = document.getElementById('appointments').value.trim();
+            const notes = document.getElementById('notes').value.trim();
+
+            if (!village || !doctorName || !personalNumber || !clinicNumber || !address || !appointments) {
+                showNotification("املأ جميع الحقول الإلزامية", "error");
+                return;
+            }
+
+            const saveBtn = document.getElementById('saveBtn');
+            const originalText = saveBtn.innerHTML;
+            saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الحفظ...';
+            saveBtn.disabled = true;
+
+            const newRef = push(ref(db, 'doctors'));
+            set(newRef, { village, doctorName, personalNumber, clinicNumber, address, appointments, notes })
+                .then(() => {
+                    showNotification("تمت الإضافة بنجاح!", "success");
+                    clearForm();
+                    
+                    saveBtn.classList.remove('pulse');
+                    saveBtn.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        saveBtn.style.transform = 'scale(1)';
+                        saveBtn.classList.add('pulse');
+                    }, 150);
+                    
+                    setTimeout(() => {
+                        switchTab('view');
+                    }, 1000);
+                })
+                .catch(err => {
+                    showNotification("حدث خطأ: " + err, "error");
+                })
+                .finally(() => {
+                    saveBtn.innerHTML = originalText;
+                    saveBtn.disabled = false;
+                });
+        });
+
+        // مسح النموذج
+        document.getElementById('clearBtn').addEventListener('click', clearForm);
+
+        function clearForm() {
+            document.getElementById('village').value = '';
+            document.getElementById('doctorName').value = '';
+            document.getElementById('personalNumber').value = '';
+            document.getElementById('clinicNumber').value = '';
+            document.getElementById('address').value = '';
+            document.getElementById('appointments').value = '';
+            document.getElementById('notes').value = '';
+        }
+
+        // عرض نافذة تأكيد الحذف
+        function showDeleteConfirmation(doctorId, doctorName, rowElement) {
+            doctorToDelete = { id: doctorId, name: doctorName, row: rowElement };
+            deleteMessage.textContent = `هل أنت متأكد من أنك تريد حذف بيانات الطبيب "${doctorName}"؟ لا يمكن التراجع عن هذا الإجراء.`;
+            deleteModal.classList.add('active');
+        }
+
+        // تأكيد الحذف
+        confirmDelete.addEventListener('click', () => {
+            if (doctorToDelete) {
+                deleteDoctor(doctorToDelete.id, doctorToDelete.row);
+                deleteModal.classList.remove('active');
+            }
+        });
+
+        // إلغاء الحذف
+        cancelDelete.addEventListener('click', () => {
+            deleteModal.classList.remove('active');
+            doctorToDelete = null;
+        });
+
+        // إغلاق النافذة عند النقر خارجها
+        deleteModal.addEventListener('click', (e) => {
+            if (e.target === deleteModal) {
+                deleteModal.classList.remove('active');
+                doctorToDelete = null;
+            }
+        });
+
+        // حذف الطبيب
+        function deleteDoctor(doctorId, rowElement) {
+            rowElement.classList.add('deleting');
+            
+            deleteSound.play().catch(e => console.log("لا يمكن تشغيل الصوت: ", e));
+            
+            remove(ref(db, `doctors/${doctorId}`))
+                .then(() => {
+                    showNotification("تم حذف بيانات الطبيب بنجاح", "success");
+                    
+                    setTimeout(() => {
+                        if (rowElement.parentNode) {
+                            rowElement.parentNode.removeChild(rowElement);
+                        }
+                        
+                        // إغلاق نافذة التفاصيل إذا كانت مفتوحة
+                        doctorDetailsModal.classList.remove('active');
+                    }, 500);
+                })
+                .catch(err => {
+                    showNotification("حدث خطأ أثناء الحذف: " + err, "error");
+                    rowElement.classList.remove('deleting');
+                });
+        }
+
+        // عرض نموذج التعديل
+        function showEditForm(doctorData) {
+            doctorToEdit = doctorData;
+            
+            document.getElementById('editDoctorId').value = doctorData.id;
+            document.getElementById('editVillage').value = doctorData.village || '';
+            document.getElementById('editDoctorName').value = doctorData.doctorName || '';
+            document.getElementById('editPersonalNumber').value = doctorData.personalNumber || '';
+            document.getElementById('editClinicNumber').value = doctorData.clinicNumber || '';
+            document.getElementById('editAddress').value = doctorData.address || '';
+            document.getElementById('editAppointments').value = doctorData.appointments || '';
+            document.getElementById('editNotes').value = doctorData.notes || '';
+            
+            editModal.classList.add('active');
+        }
+
+        // إغلاق نافذة التعديل
+        closeEditModal.addEventListener('click', () => {
+            editModal.classList.remove('active');
+            doctorToEdit = null;
+        });
+
+        cancelEdit.addEventListener('click', () => {
+            editModal.classList.remove('active');
+            doctorToEdit = null;
+        });
+
+        editModal.addEventListener('click', (e) => {
+            if (e.target === editModal) {
+                editModal.classList.remove('active');
+                doctorToEdit = null;
+            }
+        });
+
+        // حفظ التعديلات
+        editForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            if (!doctorToEdit) return;
+            
+            const updatedData = {
+                village: document.getElementById('editVillage').value.trim(),
+                doctorName: document.getElementById('editDoctorName').value.trim(),
+                personalNumber: document.getElementById('editPersonalNumber').value.trim(),
+                clinicNumber: document.getElementById('editClinicNumber').value.trim(),
+                address: document.getElementById('editAddress').value.trim(),
+                appointments: document.getElementById('editAppointments').value.trim(),
+                notes: document.getElementById('editNotes').value.trim()
+            };
+            
+            if (!updatedData.village || !updatedData.doctorName || !updatedData.personalNumber || 
+                !updatedData.clinicNumber || !updatedData.address || !updatedData.appointments) {
+                showNotification("املأ جميع الحقول الإلزامية", "error");
+                return;
+            }
+            
+            editSound.play().catch(e => console.log("لا يمكن تشغيل الصوت: ", e));
+            
+            update(ref(db, `doctors/${doctorToEdit.id}`), updatedData)
+                .then(() => {
+                    showNotification("تم تحديث بيانات الطبيب بنجاح", "success");
+                    editModal.classList.remove('active');
+                    doctorToEdit = null;
+                    
+                    // إغلاق نافذة التفاصيل المكبرة إذا كانت مفتوحة
+                    doctorDetailsModal.classList.remove('active');
+                })
+                .catch(err => {
+                    showNotification("حدث خطأ أثناء التحديث: " + err, "error");
+                });
+        });
+
+        // البحث
+        function searchData() {
+            const q = document.getElementById('searchInput').value.toLowerCase().trim();
+            
+            if (q.length > 0) {
+                searchSound.play().catch(e => console.log("لا يمكن تشغيل الصوت: ", e));
+            }
+            
+            let filteredData = [];
+            
+            if (q) {
+                filteredData = dataArray.filter(item => {
+                    switch(currentSearchType) {
+                        case 'doctorName':
+                            return item.doctorName && item.doctorName.toLowerCase().includes(q);
+                        case 'village':
+                            return item.village && item.village.toLowerCase().includes(q);
+                        case 'personalNumber':
+                            return item.personalNumber && item.personalNumber.includes(q);
+                        default:
+                            return true;
+                    }
+                });
+            } else {
+                filteredData = dataArray;
+            }
+            
+            renderTable(filteredData);
+            
+            if (filteredData.length === 0 && q.length > 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="7" style="text-align: center; padding: 30px; color: var(--gray);">
+                            <i class="fas fa-search" style="font-size: 24px; margin-bottom: 10px; display: block;"></i>
+                            لا توجد نتائج للبحث عن "${q}" في ${getSearchTypeName()}
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+
+        // الحصول على اسم نوع البحث
+        function getSearchTypeName() {
+            const names = {
+                'doctorName': 'أسماء الأطباء',
+                'village': 'القرى',
+                'personalNumber': 'الأرقام الشخصية'
+            };
+            return names[currentSearchType];
+        }
+
+        // أحداث البحث
+        document.getElementById('searchInput').addEventListener('input', searchData);
+        
+        document.getElementById('searchInput').addEventListener('focus', function() {
+            this.parentElement.classList.add('focused');
+        });
+        
+        document.getElementById('searchInput').addEventListener('blur', function() {
+            this.parentElement.classList.remove('focused');
+        });
+
+        // أحداث التركيز على الحقول
+        document.querySelectorAll('input, textarea').forEach(field => {
+            field.addEventListener('focus', function() {
+                this.parentElement.classList.add('focused');
+            });
+            
+            field.addEventListener('blur', function() {
+                this.parentElement.classList.remove('focused');
+            });
+        });
+
+        // تهيئة
+        updateSearchHint();
+
+        // تهيئة عداد الأطباء
+        doctorsCount.textContent = '0';
+    </script>
+</body>
+</html>
